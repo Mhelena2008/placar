@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Placar de Vôlei</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🏐 Placar de Vôlei</h1>
+
+    <div class="scoreboard">
+      <div class="team">
+        <input type="text" id="teamAName" value="Time A" class="team-name-input" onchange="updateTeamName('A')" />
+        <div class="score" id="scoreA">0</div>
+        <div class="controls">
+          <button onclick="changeScore('A', 1)">+1</button>
+          <button onclick="changeScore('A', -1)">-1</button>
+        </div>
+      </div>
+
+      <div class="divider">X</div>
+
+      <div class="team">
+        <input type="text" id="teamBName" value="Time B" class="team-name-input" onchange="updateTeamName('B')" />
+        <div class="score" id="scoreB">0</div>
+        <div class="controls">
+          <button onclick="changeScore('B', 1)">+1</button>
+          <button onclick="changeScore('B', -1)">-1</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="set-info">Set 1 de 5</p>
+  </div>
+
+  <script>
+    let scoreA = 0;
+    let scoreB = 0;
+
+    function changeScore(team, value) {
+      if (team === 'A') {
+        scoreA = Math.max(0, scoreA + value);
+        document.getElementById('scoreA').textContent = scoreA;
+      } else {
+        scoreB = Math.max(0, scoreB + value);
+        document.getElementById('scoreB').textContent = scoreB;
+      }
+    }
+
+    function updateTeamName(team) {
+      const inputId = team === 'A' ? 'teamAName' : 'teamBName';
+      const input = document.getElementById(inputId);
+      if (input.value.trim() === "") {
+        input.value = team === 'A' ? 'Time A' : 'Time B';
+      }
+    }
+  </script>
+</body>
+</html>
